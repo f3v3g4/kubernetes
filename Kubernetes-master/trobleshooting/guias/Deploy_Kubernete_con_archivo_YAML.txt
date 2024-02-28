@@ -1,0 +1,63 @@
+Como hacer un Deploy en Kubernete con un archivo YAML
+=======================================================
+
+Kubernete permite hacer un deploy desde un archivo YAML::
+
+	kubectl apply -f ccrredis-deployment.yaml
+	kubectl apply -f ccrredis-service.yaml
+
+
+Este es el contenido del ccrredis-service.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redisccrservice
+spec:
+  type: NodePort
+  selector: 
+    name: redisccr
+  ports:
+  - protocol: TCP
+    targetPort: 6379
+    port: 6379
+    nodePort: 31208
+    name: https
+
+	
+Este es el contenido del ccrredis-deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redisccr-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: redisccr
+      zone: prod
+  minReadySeconds: 10
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        name: redisccr
+        version: "1.0.0"
+        release: stable
+        tier: fe
+        zone: prod
+        managed-by: m2
+    spec:
+      containers:
+        - name: redisccr-ctr
+          image: 10.134.0.252:4443/ccrredis
+          imagePullPolicy: Always
+          ports:
+          - containerPort: 6379
+
+

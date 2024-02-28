@@ -1,0 +1,39 @@
+¿Que es Kubernetes?
+===================
+
+Kubernetes es un **Cluster** y **Orquestador** para contenedores y tambien para Docker. En otras palabras, Kubernetes es un software o herramienta de código abierto que se utiliza para organizar y administrar contenedores de Docker en clúster. 
+
+Kubernetes también se conoce como k8s y fue desarrollado por Google y donado a "Cloud Native Computing foundation”
+
+https://kubernetes.io/docs/concepts/overview/what-is-kubernetes/
+
+Kubernetes es una plataforma portátil, extensible y de código abierto para administrar cargas de trabajo y servicios en contenedores, que facilita tanto la configuración declarativa como la automatización. Tiene un ecosistema grande y de rápido crecimiento. Los servicios, el soporte y las herramientas de Kubernetes están ampliamente disponibles.
+
+El nombre Kubernetes proviene del griego, que significa timonel o piloto. K8s como abreviatura resulta de contar las ocho letras entre la "K" y la "s". Google abrió el proyecto Kubernetes en 2014. Kubernetes combina más de 15 años de experiencia de Google en la ejecución de cargas de trabajo de producción a gran escala con las mejores ideas y prácticas de la comunidad
+
+En Kubernetes con configuración ETCD, tenemos al menos tres (3) nodos **Master** y varios nodos **Worker**. Los nodos de clúster se conocen como **Worker Nodes** o **Minion**. Desde el nodo **Master** gestionamos el clúster y su nodos que utilizan el comando "kubeadm" y "kubectl".
+
+Kubernetes funciona con varios tipos de contenedores, pero aquí estaremos utilizando Docker.
+
+
+**Los contenedores se han vuelto populares porque brindan beneficios adicionales, como**:
+
+Agile application creation and deployment: mayor facilidad y eficiencia de la creación de imágenes de contenedores en comparación con el uso de imágenes de VM.
+
+Continuous development, integration, and deployment: proporciona una construcción e implementación de imágenes de contenedores frecuentes y confiables con reversiones rápidas y eficientes (debido a la inmutabilidad de la imagen).
+
+Dev and Ops separation of concerns: cree imágenes de contenedores de aplicaciones en el momento de la compilación/lanzamiento en lugar de en el momento de la implementación, desacoplando así las aplicaciones de la infraestructura.
+
+Observability: no solo muestra información y métricas a nivel del sistema operativo, sino también el estado de la aplicación y otras señales.
+
+Environmental consistency across development, testing, and production: funciona de la misma manera en una computadora portátil que en la nube.
+
+Cloud and OS distribution portability: se ejecuta en Ubuntu, RHEL, CoreOS, en las instalaciones, en las principales nubes públicas y en cualquier otro lugar.
+
+Application-centric management: aumenta el nivel de abstracción desde la ejecución de un sistema operativo en hardware virtual hasta la ejecución de una aplicación en un sistema operativo utilizando recursos lógicos.
+
+Loosely coupled, distributed, elastic, liberated micro-services: las aplicaciones se dividen en partes más pequeñas e independientes y se pueden implementar y administrar de forma dinámica, no una pila monolítica que se ejecuta en una gran máquina de un solo propósito.
+
+Resource isolation: rendimiento de la aplicación predecible.
+
+Resource utilization: alta eficiencia y densidad

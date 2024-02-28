@@ -1,0 +1,77 @@
+¿Por qué Kubernetes? ¿Qué cosas puede hacer?
+==============================================
+
+Vamos a ver que puede hacer Kubernetes y porque es una herramienta tan popular. Kubernetes es también conocido como k8s
+
+¿Que puede hacer k8s?
+Un ejemplo, si un contenedor muere, otro contenedor debería iniciar. ¿No sería genial que un sistemas lo hiciera de manera automática y simple?, algo que se encargue de vigilar el ecosistema entero y pueda tomar acciones automáticas basadas en eventos, es decir, un contenedor muere o falla, okey...!!! se elimina y se crea otro. Un contenedor esta consumiendo mucha CPU, pues se crean dos contenedores más en otros host. Quiero mantener siempre 50 replicas de un contenedor, pero se acaban de fallar 3, pues se eliminan las 3 que fallaron y se crean 3 nuevas, para mantener siempre 50 replicas.
+
+Esta son unas de los grandes rasgos de Kubernetes, la observabilidad, administración de forma simple.
+
+¿Entonces que más puede hacer k8s?
++++++++++++++++++++++++++++++++++++
+
+Los contenedores son una buena forma de agrupar y ejecutar sus aplicaciones. En un entorno de producción, debe administrar los contenedores que ejecutan las aplicaciones y asegurarse de que no haya tiempo de inactividad. Por ejemplo, si un contenedor se cae, otro contenedor debe comenzar. ¿No sería más fácil si este comportamiento fuera manejado por un sistema?
+
+¡Así es como Kubernetes viene al rescate! Kubernetes le proporciona un marco para ejecutar sistemas distribuidos de manera resiliente. Se encarga del escalado y la conmutación por error de su aplicación, proporciona patrones de implementación y más. Por ejemplo, Kubernetes puede administrar fácilmente una implementación canary para su sistema.
+
+
+**Kubernetes le proporciona**:
+
+Service discovery and load balancing Kubernetes pueden exponer un contenedor usando el nombre DNS o usando su propia dirección IP. Si el tráfico a un contenedor es alto, Kubernetes puede equilibrar la carga y distribuir el tráfico de la red para que la implementación sea estable.
+
+Storage orchestration Kubernetes le permite montar automáticamente un sistema de almacenamiento de su elección, como almacenamientos locales, proveedores de nube pública y más.
+
+Automated rollouts and rollbacks Puede describir el estado deseado para sus contenedores implementados usando Kubernetes, y puede cambiar el estado real al estado deseado a un ritmo controlado. Por ejemplo, puede automatizar Kubernetes para crear nuevos contenedores para su implementación, eliminar contenedores existentes y adoptar todos sus recursos al nuevo contenedor.
+
+Automatic bin packing  Proporciona a Kubernetes un grupo de nodos que puede usar para ejecutar tareas en contenedores. Le dice a Kubernetes cuánta CPU y memoria (RAM) necesita cada contenedor. Kubernetes puede colocar contenedores en sus nodos para aprovechar al máximo sus recursos.
+
+Self-healing Kubernetes reinicia contenedores que fallan, contenedores sustituye, mata a los recipientes que no responden a su chequeo de salud definida por el usuario, y no les anunciar a los clientes hasta que estén listos para servir.
+
+Secret and configuration management Kubernetes le permite almacenar y administrar información confidencial, como contraseñas, tokens OAuth y claves SSH. Puede implementar y actualizar los secretos y la configuración de la aplicación sin reconstruir las imágenes de su contenedor y sin exponer secretos en la configuración de su pila.
+
+* Services Discovery.
+
+* Rollout and Rollbacks.
+
+* Optimización de recursos en los nodos.
+
+* Self-healing.
+
+* Configuraciones de Secretos.
+
+* Escalamiento horizontal.
+
+* Y mucho más.
+
+Services Discovery: 3 host distintos y en cada uno tenemos 5 contenedores de frontend y 5 contenedores backend, como hacen los contenedores de frontend para hablar con los contenedores del backend si son distintos, pues con esta opción se puede descubrir los contenedores del backend y que el frontend solo haga una petición a un punto y de ese punto sera el encargado de transmitir la información a todos contenedores.
+
+Rollout and Rollbacks: El Rollout es como hacer una actualización sin downtime de un servicio y el Rollback es como volver a la versión anterior del servicio en caso que la actualización haya salido mal.
+
+Optimización de recursos en los nodos: Cuando k8s va colocar un contenedor en los host, el va escanear todos los host del cluster para ver cual es el de menos carga, menos estresada, la maquina con más recursos o mejor calificada para colocar los contenedores.
+
+Self-healing: Es como una Autocuración. Automáticamente crea un contenedor nuevo cuando un contenedor sale de servicio, el siempre va estar observando.
+
+Y mucho más.
+
+k8s administra los contenedores y los observa al mismo tiempo que lo administra, con esto nos garantiza que el estado actual del cluster, es siempre el estado original o el deseado. 
+
+
+Lo que no es Kubernetes
+++++++++++++++++++++++++++
+Kubernetes no es un sistema PaaS (plataform as a service) tradicional e integral. Dado que Kubernetes opera a nivel de contenedor en lugar de a nivel de hardware, proporciona algunas características de aplicación general comunes a las ofertas de PaaS, como implementación, escalado, equilibrio de carga y permite a los usuarios integrar sus soluciones de registro, monitoreo y alerta. Sin embargo, Kubernetes no es monolítico y estas soluciones predeterminadas son opcionales y conectables. Kubernetes proporciona los componentes básicos para la creación de plataformas para desarrolladores, pero conserva la elección y la flexibilidad del usuario donde es importante.
+
+**Kubernetes**:
+
+No limita los tipos de aplicaciones admitidas. Kubernetes tiene como objetivo admitir una variedad extremadamente diversa de cargas de trabajo, incluidas cargas de trabajo sin estado, con estado y de procesamiento de datos. Si una aplicación se puede ejecutar en un contenedor, debería funcionar muy bien en Kubernetes.
+
+No implementa código fuente y no crea su aplicación. Los flujos de trabajo de integración, entrega e implementación continuas (CI/CD) están determinados por las culturas y preferencias de la organización, así como por los requisitos técnicos.
+
+No proporciona servicios a nivel de aplicación, como middleware (por ejemplo, buses de mensajes), marcos de procesamiento de datos (por ejemplo, Spark), bases de datos (por ejemplo, MySQL), cachés ni sistemas de almacenamiento en clúster (por ejemplo, Ceph). como servicios integrados. Dichos componentes se pueden ejecutar en Kubernetes y/o se puede acceder a ellos mediante aplicaciones que se ejecutan en Kubernetes a través de mecanismos portátiles, como Open Service Broker .
+No impone soluciones de registro, monitoreo o alerta. Proporciona algunas integraciones como prueba de concepto y mecanismos para recopilar y exportar métricas.
+
+No proporciona ni exige un idioma/sistema de configuración (por ejemplo, Jsonnet). Proporciona una API declarativa que puede ser objeto de formas arbitrarias de especificaciones declarativas.
+No proporciona ni adopta ningún sistema completo de configuración, mantenimiento, administración o autorreparación de la máquina.
+
+Además, Kubernetes no es un mero sistema de orquestación. De hecho, elimina la necesidad de orquestación. La definición técnica de orquestación es la ejecución de un flujo de trabajo definido: primero haga A, luego B, luego C. Por el contrario, Kubernetes comprende un conjunto de procesos de control componibles e independientes que impulsan continuamente el estado actual hacia el estado deseado proporcionado. No debería importar cómo pase de A a C. Tampoco se requiere un control centralizado. Esto da como resultado un sistema que es más fácil de usar y más potente, robusto, resistente y extensible
+
