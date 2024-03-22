@@ -298,9 +298,8 @@ Crear certificados (ejecutar en todos los nodos)
 
 Vamos a descargar los PKI and TLS toolkit. Cloud Flare SSL tool genera los diferentes certificados, Kubernetes client, kubectl, para manejar el Kubernetes cluster::
 
-	# curl -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
-
-	# curl -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+	# curl -s -L -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+	# curl -s -L -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 
 	# chmod +x /usr/local/bin/cfssl*
 
@@ -804,9 +803,9 @@ Verificar en los tres (3) nodos master los pods de kubernetes ejecutando el sigu
 Instalar la red de kubernetes “Flannel” (En el Master01)
 ++++++++++++++++++++++++++++++++++++
 
-En el nodo 1 master (k8master01) ejecutar la instalacion de **Flannel**, este es el comando original, pero NO me funciono::
+En el nodo 1 master (k8master01) ejecutar la instalacion de **Flannel**.
 
-	# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+	# kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
 
 Utilice este otro comando y si me resulto::
 
