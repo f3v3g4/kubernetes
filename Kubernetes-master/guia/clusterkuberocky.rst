@@ -248,7 +248,7 @@ Instalar kubelet, kubeadm, kubectl
 ++++++++++++++++++++++++++++++++
 ::
 
-	# cat <<EOF |  tee /etc/yum.repos.d/kubernetes.repo
+# cat <<EOF |  tee /etc/yum.repos.d/kubernetes.repo
 [kubernetes]
 name=kubernetes
 baseurl=https://mirrors.tuna.tsinghua.edu.cn/kubernetes/yum/repos/kubernetes-el7-x86_64
