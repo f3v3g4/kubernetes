@@ -524,53 +524,54 @@ Al estar escrito en Go, etcd se distribuye como un paquete binario, pero tambié
 Asegúrese de tener curl y wget instalados en su servidor RHEL 8/CentOS 8/Rocky Linux 8/AlmaLinux 8.
  
 ::
-  #sudo dnf -y install curl wget vim
-  Descargar el binario Etcd
-  Consulte la última versión en la página de versiones antes de continuar para obtener la etiqueta de versión más reciente.
-  # ETCD_RELEASE=$(curl -s https://api.github.com/repos/etcd-io/etcd/releases/latest|grep tag_name | cut -d '"' -f 4)
-  # echo $ETCD_RELEASE
-  # wget https://github.com/etcd-io/etcd/releases/download/${ETCD_RELEASE}/etcd-${ETCD_RELEASE}-linux-amd64.tar.gz                  
+  	#sudo dnf -y install curl wget vim
+  	Descargar el binario Etcd
+  	Consulte la última versión en la página de versiones antes de continuar para obtener la etiqueta de versión más 	reciente.
+ 	 # ETCD_RELEASE=$(curl -s https://api.github.com/repos/etcd-io/etcd/releases/latest|grep tag_name | cut -d '"' -f 4)
+ 	 # echo $ETCD_RELEASE
+ 	 # wget https://github.com/etcd-io/etcd/releases/download/${ETCD_RELEASE}/etcd-${ETCD_RELEASE}-linux-amd64.tar.gz                  
   Extraiga el archivo descargado.
-  #tar xvf etcd-${ETCD_RELEASE}-linux-amd64.tar.gz
+ 	 #tar xvf etcd-${ETCD_RELEASE}-linux-amd64.tar.gz
   Cambiar a un nuevo directorio de archivos 
-  #cd etcd-${ETCD_RELEASE}-linux-amd64
+  	#cd etcd-${ETCD_RELEASE}-linux-amd64
   Mueva los archivos binarios etcd y etcdctl al directorio /usr/bin .
-  #sudo mv etcd* /usr/bin 
+  	#sudo mv etcd* /usr/bin 
   
   Enumere los archivos binarios y los scripts ejecutables en el directorio /usr/local/bin:
 
-  # ls -ltr | grep etcd
-  etcd  etcdctl  etcdutl
-  Confirmar versión.
+  	# ls -ltr | grep etcd
+  	etcd  etcdctl  etcdutl
+  	Confirmar versión.
 
-  $ etcd --version
-  etcd Version: 3.5.2
-  Git SHA: 99018a77b
-  Go Version: go1.16.3
-  Go OS/Arch: linux/amd64
+  	$ etcd --version
+  	etcd Version: 3.5.2
+  	Git SHA: 99018a77b
+  	Go Version: go1.16.3
+  	Go OS/Arch: linux/amd64
 
-  # etcdctl version
-  etcdctl version: 3.5.2
-  API version: 3.5
+  	# etcdctl version
+  	etcdctl version: 3.5.2
+  	API version: 3.5
 
-  $ etcdutl version
-  etcdutl version: 3.5.2
-  API version: 3.5
-  Paso 2: Configurar el servicio Etcd Systemd
+	$ etcdutl version
+  	etcdutl version: 3.5.2
+  	API version: 3.5
+  Configurar el servicio Etcd Systemd
+
   Usaremos systemd para administrar el servicio etcd. Primero, cree un directorio de datos para etcd.
 
-  # sudo mkdir -p /var/lib/etcd/
-  # sudo mkdir /etc/etcd
+  	# sudo mkdir -p /var/lib/etcd/
+  	# sudo mkdir /etc/etcd
 
   Crear usuario del sistema etcd
 
-  # sudo groupadd --system etcd
-  # sudo useradd -s /sbin/nologin --system -g etcd etcd
+  	# sudo groupadd --system etcd
+  	# sudo useradd -s /sbin/nologin --system -g etcd etcd
 
   Establezca la propiedad del directorio /var/lib/etcd/ como etcd usuario.
 
-  # sudo chown -R etcd:etcd /var/lib/etcd/
-  # sudo chmod 0775 /var/lib/etcd/ 
+ 	 # sudo chown -R etcd:etcd /var/lib/etcd/
+ 	 # sudo chmod 0775 /var/lib/etcd/ 
                  
 	# yum -y install etcd
 	# touch /etc/etcd.env
