@@ -43,7 +43,7 @@ Como estará configurado el laboratorio
 
 
 Preparando todos los servidores
-========================
+===============================
 
 Hay algunas configuraciones previas que se deben realizar en cada uno de los servidores de igual forma.
 
@@ -256,9 +256,295 @@ Creamos un nuevo archivo de configuración con el default template::
 Editamos el nuevo archivo de configuración y buscamos SystemdCgroup  y lo colocamos en true::
 
   # vi config.toml
-  [...]
-    SystemdCgroup = true
-  [...]
+disabled_plugins = []
+imports = []
+oom_score = 0
+plugin_dir = ""
+required_plugins = []
+root = "/var/lib/containerd"
+state = "/run/containerd"
+temp = ""
+version = 2
+
+[cgroup]
+  path = ""
+
+[debug]
+  address = ""
+  format = ""
+  gid = 0
+  level = ""
+  uid = 0
+
+[grpc]
+  address = "/run/containerd/containerd.sock"
+  gid = 0
+  max_recv_message_size = 16777216
+  max_send_message_size = 16777216
+  tcp_address = ""
+  tcp_tls_ca = ""
+  tcp_tls_cert = ""
+  tcp_tls_key = ""
+  uid = 0
+
+[metrics]
+  address = ""
+  grpc_histogram = false
+
+[plugins]
+
+  [plugins."io.containerd.gc.v1.scheduler"]
+    deletion_threshold = 0
+    mutation_threshold = 100
+    pause_threshold = 0.02
+    schedule_delay = "0s"
+    startup_delay = "100ms"
+
+  [plugins."io.containerd.grpc.v1.cri"]
+    cdi_spec_dirs = ["/etc/cdi", "/var/run/cdi"]
+    device_ownership_from_security_context = false
+    disable_apparmor = false
+    disable_cgroup = false
+    disable_hugetlb_controller = true
+    disable_proc_mount = false
+    disable_tcp_service = true
+    drain_exec_sync_io_timeout = "0s"
+    enable_cdi = false
+    enable_selinux = false
+    enable_tls_streaming = false
+    enable_unprivileged_icmp = false
+    enable_unprivileged_ports = false
+    ignore_deprecation_warnings = []
+    ignore_image_defined_volumes = false
+    image_pull_progress_timeout = "5m0s"
+    image_pull_with_sync_fs = false
+    max_concurrent_downloads = 3
+    max_container_log_line_size = 16384
+    netns_mounts_under_state_dir = false
+    restrict_oom_score_adj = false
+    sandbox_image = "registry.k8s.io/pause:3.8"
+    selinux_category_range = 1024
+    stats_collect_period = 10
+    stream_idle_timeout = "4h0m0s"
+    stream_server_address = "127.0.0.1"
+    stream_server_port = "0"
+    systemd_cgroup = false
+    tolerate_missing_hugetlb_controller = true
+    unset_seccomp_profile = ""
+
+    [plugins."io.containerd.grpc.v1.cri".cni]
+      bin_dir = "/opt/cni/bin"
+      conf_dir = "/etc/cni/net.d"
+      conf_template = ""
+      ip_pref = ""
+      max_conf_num = 1
+      setup_serially = false
+
+    [plugins."io.containerd.grpc.v1.cri".containerd]
+      default_runtime_name = "runc"
+      disable_snapshot_annotations = true
+      discard_unpacked_layers = false
+      ignore_blockio_not_enabled_errors = false
+      ignore_rdt_not_enabled_errors = false
+      no_pivot = false
+      snapshotter = "overlayfs"
+
+      [plugins."io.containerd.grpc.v1.cri".containerd.default_runtime]
+        base_runtime_spec = ""
+        cni_conf_dir = ""
+        cni_max_conf_num = 0
+        container_annotations = []
+        pod_annotations = []
+        privileged_without_host_devices = false
+        privileged_without_host_devices_all_devices_allowed = false
+        runtime_engine = ""
+        runtime_path = ""
+        runtime_root = ""
+        runtime_type = ""
+        sandbox_mode = ""
+        snapshotter = ""
+
+        [plugins."io.containerd.grpc.v1.cri".containerd.default_runtime.options]
+
+      [plugins."io.containerd.grpc.v1.cri".containerd.runtimes]
+
+        [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc]
+          base_runtime_spec = ""
+          cni_conf_dir = ""
+          cni_max_conf_num = 0
+          container_annotations = []
+          pod_annotations = []
+          privileged_without_host_devices = false
+          privileged_without_host_devices_all_devices_allowed = false
+          runtime_engine = ""
+          runtime_path = ""
+          runtime_root = ""
+          runtime_type = "io.containerd.runc.v2"
+          sandbox_mode = "podsandbox"
+          snapshotter = ""
+
+          [plugins."io.containerd.grpc.v1.cri".containerd.runtimes.runc.options]
+            BinaryName = ""
+            CriuImagePath = ""
+            CriuPath = ""
+            CriuWorkPath = ""
+            IoGid = 0
+            IoUid = 0
+            NoNewKeyring = false
+            NoPivotRoot = false
+            Root = ""
+            ShimCgroup = ""
+            SystemdCgroup = true
+
+      [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime]
+        base_runtime_spec = ""
+        cni_conf_dir = ""
+        cni_max_conf_num = 0
+        container_annotations = []
+        pod_annotations = []
+        privileged_without_host_devices = false
+        privileged_without_host_devices_all_devices_allowed = false
+        runtime_engine = ""
+        runtime_path = ""
+        runtime_root = ""
+        runtime_type = ""
+        sandbox_mode = ""
+        snapshotter = ""
+
+        [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime.options]
+
+    [plugins."io.containerd.grpc.v1.cri".image_decryption]
+      key_model = "node"
+
+    [plugins."io.containerd.grpc.v1.cri".registry]
+      config_path = ""
+
+      [plugins."io.containerd.grpc.v1.cri".registry.auths]
+
+      [plugins."io.containerd.grpc.v1.cri".registry.configs."10.134.0.252:4443".tls]
+        insecure_skip_verify = true
+      [plugins."io.containerd.grpc.v1.cri".registry.headers]
+
+      [plugins."io.containerd.grpc.v1.cri".registry.mirrors."10.134.0.252:4443"]
+        endpoint = ["https://10.134.0.252:4443"]
+    [plugins."io.containerd.grpc.v1.cri".x509_key_pair_streaming]
+      tls_cert_file = ""
+      tls_key_file = ""
+
+  [plugins."io.containerd.internal.v1.opt"]
+    path = "/opt/containerd"
+
+  [plugins."io.containerd.internal.v1.restart"]
+    interval = "10s"
+
+  [plugins."io.containerd.internal.v1.tracing"]
+
+  [plugins."io.containerd.metadata.v1.bolt"]
+    content_sharing_policy = "shared"
+
+  [plugins."io.containerd.monitor.v1.cgroups"]
+    no_prometheus = false
+
+  [plugins."io.containerd.nri.v1.nri"]
+    disable = true
+    disable_connections = false
+    plugin_config_path = "/etc/nri/conf.d"
+    plugin_path = "/opt/nri/plugins"
+    plugin_registration_timeout = "5s"
+    plugin_request_timeout = "2s"
+    socket_path = "/var/run/nri/nri.sock"
+
+  [plugins."io.containerd.runtime.v1.linux"]
+    no_shim = false
+    runtime = "runc"
+    runtime_root = ""
+    shim = "containerd-shim"
+    shim_debug = false
+
+  [plugins."io.containerd.runtime.v2.task"]
+    platforms = ["linux/amd64"]
+    sched_core = false
+
+  [plugins."io.containerd.service.v1.diff-service"]
+    default = ["walking"]
+
+  [plugins."io.containerd.service.v1.tasks-service"]
+    blockio_config_file = ""
+    rdt_config_file = ""
+
+  [plugins."io.containerd.snapshotter.v1.aufs"]
+    root_path = ""
+
+  [plugins."io.containerd.snapshotter.v1.blockfile"]
+    fs_type = ""
+    mount_options = []
+    root_path = ""
+    scratch_file = ""
+
+  [plugins."io.containerd.snapshotter.v1.devmapper"]
+    async_remove = false
+    base_image_size = ""
+    discard_blocks = false
+    fs_options = ""
+    fs_type = ""
+    pool_name = ""
+    root_path = ""
+
+  [plugins."io.containerd.snapshotter.v1.native"]
+    root_path = ""
+
+  [plugins."io.containerd.snapshotter.v1.overlayfs"]
+    mount_options = []
+    root_path = ""
+    sync_remove = false
+    upperdir_label = false
+
+  [plugins."io.containerd.snapshotter.v1.zfs"]
+    root_path = ""
+
+  [plugins."io.containerd.tracing.processor.v1.otlp"]
+
+  [plugins."io.containerd.transfer.v1.local"]
+    config_path = ""
+    max_concurrent_downloads = 3
+    max_concurrent_uploaded_layers = 3
+
+    [[plugins."io.containerd.transfer.v1.local".unpack_config]]
+      differ = ""
+      platform = "linux/amd64"
+      snapshotter = "overlayfs"
+
+[proxy_plugins]
+
+[stream_processors]
+
+  [stream_processors."io.containerd.ocicrypt.decoder.v1.tar"]
+    accepts = ["application/vnd.oci.image.layer.v1.tar+encrypted"]
+    args = ["--decryption-keys-path", "/etc/containerd/ocicrypt/keys"]
+    env = ["OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf"]
+    path = "ctd-decoder"
+    returns = "application/vnd.oci.image.layer.v1.tar"
+
+  [stream_processors."io.containerd.ocicrypt.decoder.v1.tar.gzip"]
+    accepts = ["application/vnd.oci.image.layer.v1.tar+gzip+encrypted"]
+    args = ["--decryption-keys-path", "/etc/containerd/ocicrypt/keys"]
+    env = ["OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf"]
+    path = "ctd-decoder"
+    returns = "application/vnd.oci.image.layer.v1.tar+gzip"
+
+[timeouts]
+  "io.containerd.timeout.bolt.open" = "0s"
+  "io.containerd.timeout.metrics.shimstats" = "2s"
+  "io.containerd.timeout.shim.cleanup" = "5s"
+  "io.containerd.timeout.shim.load" = "5s"
+  "io.containerd.timeout.shim.shutdown" = "3s"
+  "io.containerd.timeout.task.state" = "2s"
+
+[ttrpc]
+  address = ""
+  gid = 0
+  uid = 0
+
 
 Habilitamos y reiniciamos el servicio::
 
@@ -312,7 +598,7 @@ Instalar kubelet, kubeadm, kubectl
 ++++++++++++++++++++++++++++++++
 ::
 
-	# cat <<\EOF > /etc/yum.repos.d/kubernetes.repo
+  cat <<\EOF > /etc/yum.repos.d/kubernetes.repo
   [kubernetes]
   name=Kubernetes
   baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
@@ -320,7 +606,7 @@ Instalar kubelet, kubeadm, kubectl
   gpgcheck=1
   gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
   exclude=kubelet kubeadm kubectl cri-tools kubernetes-cni
-	EOF
+  EOF
 
 Listamos todas las versiones de kubeadm, kubelet, kubectl, por si queremos escoger una en particular::
 
@@ -361,9 +647,9 @@ Crear certificados (ejecutar en todos los nodos)
 
 Vamos a descargar los PKI and TLS toolkit. Cloud Flare SSL tool genera los diferentes certificados, Kubernetes client, kubectl, para manejar el Kubernetes cluster::
 
-	# wget -O /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
+	# curl -s -L -o /usr/local/bin/cfssl https://pkg.cfssl.org/R1.2/cfssl_linux-amd64
 
-	# wget -O /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
+	# curl -s -L -o /usr/local/bin/cfssljson https://pkg.cfssl.org/R1.2/cfssljson_linux-amd64
 
 	# chmod +x /usr/local/bin/cfssl*
 
@@ -462,7 +748,7 @@ Crear el archivo de configuración para el certificado cliente. (En el Master01)
 
 Para esto crear el archivo /etc/kubernetes/pki/etcd/client.json con el siguiente contenido::
 
-	client.json
+	vi client.json
 	{
 	"CN": "client",
 	"key": {
@@ -611,13 +897,8 @@ Instalar y configurar ETCD (En todos los Master)
   # etcdutl version
   etcdutl version: 3.5.2
   API version: 3.5
-                     
-  # touch /etc/etcd.env
-  # export PRIVATE_IP=$(ip addr show ens192 | grep -Po 'inet \K[\d.]+') && export PEER_NAME=$(hostname)
-  # echo "PEER_NAME=${PEER_NAME}" >> /etc/etcd.env
-  # echo "PRIVATE_IP=${PRIVATE_IP}" >> /etc/etcd.env
 
-Configuramos el ETCD como un servicio::
+  Configuramos el ETCD como un servicio::
 
   # cd
   # mkdir -p /var/lib/etcd/
@@ -628,6 +909,13 @@ Configuramos el ETCD como un servicio::
 
   # chown -R etcd:etcd /var/lib/etcd/
   # chmod 0775 /var/lib/etcd/
+                     
+  # touch /etc/etcd.env
+  # export PRIVATE_IP=$(ip addr show ens192 | grep -Po 'inet \K[\d.]+') && export PEER_NAME=$(hostname)
+  # echo "PEER_NAME=${PEER_NAME}" >> /etc/etcd.env
+  # echo "PRIVATE_IP=${PRIVATE_IP}" >> /etc/etcd.env
+
+
                    
 El objetivo de los comandos anteriores es instalar etcd y crear el archivo /etc/etcd.env con los
 valores PEER_NAME y PRIVATE_IP en los nodos master. Lo consultamos en cada uno de los Master y debe tener los datos de cada uno de ellos::
@@ -668,7 +956,7 @@ En el Master01::
 	RestartSec=5s
 	LimitNOFILE=40000
 	TimeoutStartSec=0
-	ExecStart=/usr/bin/etcd \
+	ExecStart=/usr/local/bin/etcd \
 	--name=k8master01 \
 	--data-dir=/var/lib/etcd \
 	--listen-client-urls=https://192.168.1.20:2379 \
@@ -704,7 +992,7 @@ En el Master02::
 	RestartSec=5s
 	LimitNOFILE=40000
 	TimeoutStartSec=0
-	ExecStart=/usr/bin/etcd \
+	ExecStart=/usr/local/bin/etcd \
 	--name=k8master02 \
 	--data-dir=/var/lib/etcd \
 	--listen-client-urls=https://192.168.1.21:2379 \
@@ -742,7 +1030,7 @@ En el Master03::
 	RestartSec=5s
 	LimitNOFILE=40000
 	TimeoutStartSec=0
-	ExecStart=/usr/bin/etcd \
+	ExecStart=/usr/local/bin/etcd \
 	--name=k8master03 \
 	--data-dir=/var/lib/etcd \
 	--listen-client-urls=https://192.168.1.22:2379 \
@@ -810,40 +1098,41 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
   # vi config.yaml
 
   apiServer:
-    certSANs:
-    - 192.168.1.20
-    extraArgs:
-      apiserver-count: "3"
-      authorization-mode: Node,RBAC
-    timeoutForControlPlane: 4m0s
-  apiVersion: kubeadm.k8s.io/v1beta3
-  certificatesDir: /etc/kubernetes/pki
-  clusterName: kubernetes
-  controlPlaneEndpoint: ""
-  controllerManager: {}
-  dns:
-    imageRepository: k8s.m.daocloud.io/coredns
-  etcd:
-    external:
-      caFile: /etc/kubernetes/pki/etcd/ca.pem
-      certFile: /etc/kubernetes/pki/etcd/client.pem
-      endpoints:
-      - https://192.168.1.20:2379
-      - https://192.168.1.21:2379
-      - https://192.168.1.22:2379
-      keyFile: /etc/kubernetes/pki/etcd/client-key.pem
-  imageRepository: k8s.gcr.io
-  kind: ClusterConfiguration
-  kubernetesVersion: v1.30.2
-  networking:
-    dnsDomain: cluster.local
-    podSubnet: 10.244.0.0/16
-    serviceSubnet: 10.96.0.0/12
-  scheduler: {}
-  ---
-  kind: KubeletConfiguration
-  apiVersion: kubelet.config.k8s.io/v1beta1
-  cgroupDriver: systemd
+  certSANs:
+  - 10.134.4.177
+  extraArgs:
+    apiserver-count: "3"
+    authorization-mode: Node,RBAC
+  timeoutForControlPlane: 4m0s
+apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controlPlaneEndpoint: ""
+controllerManager: {}
+dns:
+  imageRepository: k8s.m.daocloud.io/coredns
+etcd:
+  external:
+    caFile: /etc/kubernetes/pki/etcd/ca.pem
+    certFile: /etc/kubernetes/pki/etcd/client.pem
+    endpoints:
+    - https://10.134.4.177:2379
+    - https://10.134.4.178:2379
+    - https://10.134.4.179:2379
+    keyFile: /etc/kubernetes/pki/etcd/client-key.pem
+imageRepository: registry.k8s.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.30.2
+networking:
+  dnsDomain: cluster.local
+  podSubnet: 10.244.0.0/16
+  serviceSubnet: 10.96.0.0/12
+scheduler: {}
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+
 
 
 Este archivo sera el mismo a utilizar en todos los Master, sin realizarle modificaciones.
@@ -869,39 +1158,7 @@ En el Master01, vamos a iniciar la configuración de Kubernetes. Ejecutar el sig
 	# cd /etc/kubernetes/configuration
 
 	# kubeadm init --config=config2.yaml
-
-**NOTA** Segurramente luego de ejecutar el comando **kubeadm init --config=config2.yaml** te genere los siguientes errores::
 	
-	error execution phase preflight: [preflight] Some fatal errors occurred:
-	        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-apiserver:v1.30.2: output: E0619 09:14:00.923777    3386 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-apiserver:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-apiserver:v1.30.2\": k8s.gcr.io/kube-apiserver:v1.30.2: not found" image="k8s.gcr.io/kube-apiserver:v1.30.2"
-	time="2024-06-19T09:14:00-04:00" level=fatal msg="pulling image: rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-apiserver:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-apiserver:v1.30.2\": k8s.gcr.io/kube-apiserver:v1.30.2: not found"
-	, error: exit status 1
-	        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-controller-manager:v1.30.2: output: E0619 09:14:02.240883    3414 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-controller-manager:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-controller-manager:v1.30.2\": k8s.gcr.io/kube-controller-manager:v1.30.2: not found" image="k8s.gcr.io/kube-controller-manager:v1.30.2"
-	time="2024-06-19T09:14:02-04:00" level=fatal msg="pulling image: rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-controller-manager:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-controller-manager:v1.30.2\": k8s.gcr.io/kube-controller-manager:v1.30.2: not found"
-	, error: exit status 1
-	        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-scheduler:v1.30.2: output: E0619 09:14:03.560591    3441 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-scheduler:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-scheduler:v1.30.2\": k8s.gcr.io/kube-scheduler:v1.30.2: not found" image="k8s.gcr.io/kube-scheduler:v1.30.2"
-	time="2024-06-19T09:14:03-04:00" level=fatal msg="pulling image: rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-scheduler:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-scheduler:v1.30.2\": k8s.gcr.io/kube-scheduler:v1.30.2: not found"
-	, error: exit status 1
-	        [ERROR ImagePull]: failed to pull image k8s.gcr.io/kube-proxy:v1.30.2: output: E0619 09:14:04.849481    3468 remote_image.go:180] "PullImage from image service failed" err="rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-proxy:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-proxy:v1.30.2\": k8s.gcr.io/kube-proxy:v1.30.2: not found" image="k8s.gcr.io/kube-proxy:v1.30.2"
-	time="2024-06-19T09:14:04-04:00" level=fatal msg="pulling image: rpc error: code = NotFound desc = failed to pull and unpack image \"k8s.gcr.io/kube-proxy:v1.30.2\": failed to resolve reference \"k8s.gcr.io/kube-proxy:v1.30.2\": k8s.gcr.io/kube-proxy:v1.30.2: not found"
-	, error: exit status 1
-	[preflight] If you know what you are doing, you can make a check non-fatal with `--ignore-preflight-errors=...`
-	To see the stack trace of this error execute with --v=5 or higher
-
-Tendrá que darle varias veces el siguiente comando para descargar las imagenes requeridas::
-
-	# kubeadm config images pull
-	[config/images] Pulled registry.k8s.io/kube-apiserver:v1.30.2
-	[config/images] Pulled registry.k8s.io/kube-controller-manager:v1.30.2
-	[config/images] Pulled registry.k8s.io/kube-scheduler:v1.30.2
-	[config/images] Pulled registry.k8s.io/kube-proxy:v1.30.2
-	[config/images] Pulled registry.k8s.io/coredns/coredns:v1.11.1
-	[config/images] Pulled registry.k8s.io/pause:3.9
-	[config/images] Pulled registry.k8s.io/etcd:3.5.12-0
-
-Y luego ejecutar nuevamente el comando::
-
-	# kubeadm init --config=config2.yaml
 
 Tomar nota del token del cluster
 ++++++++++++++++++++++++++++++++++++
@@ -946,13 +1203,9 @@ Verificar en los tres (3) nodos master los pods de kubernetes ejecutando el sigu
 Instalar la red de kubernetes “Flannel” (En el Master01)
 ++++++++++++++++++++++++++++++++++++
 
-En el nodo 1 master (k8master01) ejecutar la instalacion de **Flannel**, este es el comando original, esto no me funciono en CentOS7, pero en Rocky Linux 9.4 si::
+En el nodo 1 master (k8master01) ejecutar la instalacion de **Flannel* ::
 
 	# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
-
-Utilice este otro comando y si me resulto en CentOS7, NO lo utilizamos en Rocky Linux 9.4 ::
-
-	# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/2140ac876ef134e0ed5af15c65e414cf26827915/Documentation/kube-flannel.yml
 
 Ejecutar el siguiente comando para verificar que los pods “coredns” tengan el status “running”::
 
