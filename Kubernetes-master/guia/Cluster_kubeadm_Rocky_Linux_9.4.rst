@@ -253,6 +253,8 @@ Creamos un nuevo archivo de configuración con el default template::
 
   # containerd config default > config.toml 
 
+ vi config.toml
+
  disabled_plugins = []
  imports = []
  oom_score = 0
