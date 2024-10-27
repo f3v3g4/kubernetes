@@ -410,10 +410,10 @@ Creamos un nuevo archivo de configuración con el default template::
 
         [plugins."io.containerd.grpc.v1.cri".containerd.untrusted_workload_runtime.options]
 
-    [plugins."io.containerd.grpc.v1.cri".image_decryption]
+     [plugins."io.containerd.grpc.v1.cri".image_decryption]
       key_model = "node"
 
-    [plugins."io.containerd.grpc.v1.cri".registry]
+     [plugins."io.containerd.grpc.v1.cri".registry]
       config_path = ""
 
       [plugins."io.containerd.grpc.v1.cri".registry.auths]
@@ -511,9 +511,9 @@ Creamos un nuevo archivo de configuración con el default template::
       platform = "linux/amd64"
       snapshotter = "overlayfs"
 
-[proxy_plugins]
+ [proxy_plugins]
 
-[stream_processors]
+ [stream_processors]
 
   [stream_processors."io.containerd.ocicrypt.decoder.v1.tar"]
     accepts = ["application/vnd.oci.image.layer.v1.tar+encrypted"]
@@ -522,14 +522,14 @@ Creamos un nuevo archivo de configuración con el default template::
     path = "ctd-decoder"
     returns = "application/vnd.oci.image.layer.v1.tar"
 
-  [stream_processors."io.containerd.ocicrypt.decoder.v1.tar.gzip"]
+ [stream_processors."io.containerd.ocicrypt.decoder.v1.tar.gzip"]
     accepts = ["application/vnd.oci.image.layer.v1.tar+gzip+encrypted"]
     args = ["--decryption-keys-path", "/etc/containerd/ocicrypt/keys"]
     env = ["OCICRYPT_KEYPROVIDER_CONFIG=/etc/containerd/ocicrypt/ocicrypt_keyprovider.conf"]
     path = "ctd-decoder"
     returns = "application/vnd.oci.image.layer.v1.tar+gzip"
 
-[timeouts]
+ [timeouts]
   "io.containerd.timeout.bolt.open" = "0s"
   "io.containerd.timeout.metrics.shimstats" = "2s"
   "io.containerd.timeout.shim.cleanup" = "5s"
@@ -537,7 +537,7 @@ Creamos un nuevo archivo de configuración con el default template::
   "io.containerd.timeout.shim.shutdown" = "3s"
   "io.containerd.timeout.task.state" = "2s"
 
-[ttrpc]
+ [ttrpc]
   address = ""
   gid = 0
   uid = 0
