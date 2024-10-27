@@ -1126,11 +1126,11 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
   dnsDomain: cluster.local
   podSubnet: 10.244.0.0/16
   serviceSubnet: 10.96.0.0/12
- scheduler: {}
----
-kind: KubeletConfiguration
-apiVersion: kubelet.config.k8s.io/v1beta1
-cgroupDriver: systemd
+  scheduler: {}
+ ---
+ kind: KubeletConfiguration
+ apiVersion: kubelet.config.k8s.io/v1beta1
+ cgroupDriver: systemd
 
 
 
