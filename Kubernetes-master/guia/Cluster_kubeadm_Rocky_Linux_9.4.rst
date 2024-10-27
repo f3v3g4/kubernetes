@@ -252,11 +252,12 @@ Creamos un nuevo archivo de configuración con el default template::
   # cd /etc/containerd/
 
   # containerd config default > config.toml 
-::
 
-disabled_plugins = []
+Le egregamos el siguiente contenidido al acrcivo config.toml:: 
 
-imports = []
+   disabled_plugins = []
+
+   imports = []
 
 oom_score = 0
 
