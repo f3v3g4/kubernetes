@@ -253,8 +253,16 @@ Creamos un nuevo archivo de configuración con el default template::
 
   # containerd config default > config.toml 
 
-Le egregamos el siguiente contenidido al acrcivo config.toml
-::
+Le egregamos el siguiente contenidido al acrcivo config.toml::
+
+disabled_plugins = []
+
+disabled_plugins = []
+
+disabled_plugins = []
+
+disabled_plugins = []
+
 
 disabled_plugins = []
 imports = []
