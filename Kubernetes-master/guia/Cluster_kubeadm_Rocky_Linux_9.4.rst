@@ -253,8 +253,7 @@ Creamos un nuevo archivo de configuración con el default template::
 
   # containerd config default > config.toml 
 
-Le egregamos el siguiente contenidido al acrcivo config.toml
-::
+Creamos un nuevo archivo de configuración con el default template::
 
 disabled_plugins = []
 
