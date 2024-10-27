@@ -255,7 +255,16 @@ Creamos un nuevo archivo de configuración con el default template::
 
 Editamos el nuevo archivo de configuración y buscamos SystemdCgroup  y lo colocamos en true::
 
- # vi config.toml 
+ # vi config.toml disabled_plugins = []
+imports = []
+oom_score = 0
+plugin_dir = ""
+required_plugins = []
+root = "/var/lib/containerd"
+state = "/run/containerd"
+temp = ""
+version = 2
+
 disabled_plugins = []
 imports = []
 oom_score = 0
