@@ -1103,15 +1103,15 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
     apiserver-count: "3"
     authorization-mode: Node,RBAC
   timeoutForControlPlane: 4m0s
-apiVersion: kubeadm.k8s.io/v1beta3
-certificatesDir: /etc/kubernetes/pki
-clusterName: kubernetes
-controlPlaneEndpoint: ""
-controllerManager: {}
-dns:
+ apiVersion: kubeadm.k8s.io/v1beta3
+ certificatesDir: /etc/kubernetes/pki
+ clusterName: kubernetes
+ controlPlaneEndpoint: ""
+ controllerManager: {}
+ dns:
   imageRepository: k8s.m.daocloud.io/coredns
-etcd:
-  external:
+ etcd:
+   external:
     caFile: /etc/kubernetes/pki/etcd/ca.pem
     certFile: /etc/kubernetes/pki/etcd/client.pem
     endpoints:
@@ -1119,14 +1119,14 @@ etcd:
     - https://10.134.4.178:2379
     - https://10.134.4.179:2379
     keyFile: /etc/kubernetes/pki/etcd/client-key.pem
-imageRepository: registry.k8s.io
-kind: ClusterConfiguration
-kubernetesVersion: v1.30.2
-networking:
+ imageRepository: registry.k8s.io
+ kind: ClusterConfiguration
+ kubernetesVersion: v1.30.2
+ networking:
   dnsDomain: cluster.local
   podSubnet: 10.244.0.0/16
   serviceSubnet: 10.96.0.0/12
-scheduler: {}
+ scheduler: {}
 ---
 kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
