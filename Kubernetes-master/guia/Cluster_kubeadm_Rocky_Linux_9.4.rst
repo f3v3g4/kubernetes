@@ -253,23 +253,8 @@ Creamos un nuevo archivo de configuración con el default template::
 
   # containerd config default > config.toml 
 
-Creamos un nuevo archivo de configuración con el default template::
 
-Creamos un nuevo archivo de configuración con el default template::
-
-  # cd /etc/containerd/
-
-  # containerd config default > config.toml 
-
-
-
-disabled_plugins = []
-disabled_plugins = []
-disabled_plugins = []
-disabled_plugins = []
-
-
-disabled_plugins = []
+  disabled_plugins = []
 imports = []
 oom_score = 0
 plugin_dir = ""
@@ -557,6 +542,11 @@ version = 2
   address = ""
   gid = 0
   uid = 0
+
+  
+
+
+
 
 
 
