@@ -252,6 +252,15 @@ Creamos un nuevo archivo de configuración con el default template::
   # cd /etc/containerd/
 
   # containerd config default > config.toml
+disabled_plugins = []
+imports = []
+oom_score = 0
+plugin_dir = ""
+required_plugins = []
+root = "/var/lib/containerd"
+state = "/run/containerd"
+temp = ""
+version = 2
 
 
 
