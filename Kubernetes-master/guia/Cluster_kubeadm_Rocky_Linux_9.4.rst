@@ -256,11 +256,8 @@ Creamos un nuevo archivo de configuración con el default template::
 Creamos un nuevo archivo de configuración con el default template::
 
 disabled_plugins = []
-
 disabled_plugins = []
-
 disabled_plugins = []
-
 disabled_plugins = []
 
 
