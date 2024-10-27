@@ -253,27 +253,27 @@ Creamos un nuevo archivo de configuración con el default template::
 
   # containerd config default > config.toml 
 
-  disabled_plugins = []
-  imports = []
-  oom_score = 0
-  plugin_dir = ""
-  required_plugins = []
-  root = "/var/lib/containerd"
-  state = "/run/containerd"
-  temp = ""
-  version = 2
+ disabled_plugins = []
+ imports = []
+ oom_score = 0
+ plugin_dir = ""
+ required_plugins = []
+ root = "/var/lib/containerd"
+ state = "/run/containerd"
+ temp = ""
+ version = 2
 
-  [cgroup]
+ [cgroup]
   path = ""
 
-[debug]
+ [debug]
   address = ""
   format = ""
   gid = 0
   level = ""
   uid = 0
 
-[grpc]
+ [grpc]
   address = "/run/containerd/containerd.sock"
   gid = 0
   max_recv_message_size = 16777216
@@ -284,11 +284,11 @@ Creamos un nuevo archivo de configuración con el default template::
   tcp_tls_key = ""
   uid = 0
 
-[metrics]
+ [metrics]
   address = ""
   grpc_histogram = false
 
-[plugins]
+ [plugins]
 
   [plugins."io.containerd.gc.v1.scheduler"]
     deletion_threshold = 0
@@ -543,13 +543,6 @@ Creamos un nuevo archivo de configuración con el default template::
   uid = 0
 
   
-
-
-
-
-
-
-
 Habilitamos y reiniciamos el servicio::
 
   # systemctl enable --now containerd.service
