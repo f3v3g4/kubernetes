@@ -1096,41 +1096,44 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
 
   # vi config.yaml
 
-  apiServer:
+ cat <<\EOF > config.yaml
+
+apiServer:
   certSANs:
-  - 10.134.4.177
+  - 10.134.4.172
   extraArgs:
     apiserver-count: "3"
     authorization-mode: Node,RBAC
   timeoutForControlPlane: 4m0s
- apiVersion: kubeadm.k8s.io/v1beta3
- certificatesDir: /etc/kubernetes/pki
- clusterName: kubernetes
- controlPlaneEndpoint: ""
- controllerManager: {}
- dns:
+apiVersion: kubeadm.k8s.io/v1beta3
+certificatesDir: /etc/kubernetes/pki
+clusterName: kubernetes
+controlPlaneEndpoint: ""
+controllerManager: {}
+dns:
   imageRepository: k8s.m.daocloud.io/coredns
- etcd:
-   external:
+etcd:
+  external:
     caFile: /etc/kubernetes/pki/etcd/ca.pem
     certFile: /etc/kubernetes/pki/etcd/client.pem
     endpoints:
-    - https://10.134.4.177:2379
-    - https://10.134.4.178:2379
-    - https://10.134.4.179:2379
+    - https://10.134.4.172:2379
+    - https://10.134.4.173:2379
+    - https://10.134.4.174:2379
     keyFile: /etc/kubernetes/pki/etcd/client-key.pem
- imageRepository: registry.k8s.io
- kind: ClusterConfiguration
- kubernetesVersion: v1.30.2
- networking:
+imageRepository: k8s.gcr.io
+kind: ClusterConfiguration
+kubernetesVersion: v1.30.2
+networking:
   dnsDomain: cluster.local
   podSubnet: 10.244.0.0/16
   serviceSubnet: 10.96.0.0/12
-  scheduler: {}
- ---
- kind: KubeletConfiguration
- apiVersion: kubelet.config.k8s.io/v1beta1
- cgroupDriver: systemd
+scheduler: {}
+---
+kind: KubeletConfiguration
+apiVersion: kubelet.config.k8s.io/v1beta1
+cgroupDriver: systemd
+EOF
 
 
 
