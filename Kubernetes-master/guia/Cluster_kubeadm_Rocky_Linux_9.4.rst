@@ -600,7 +600,7 @@ Instalar kubelet, kubeadm, kubectl
   cat <<\EOF > /etc/yum.repos.d/kubernetes.repo
   [kubernetes]
   name=Kubernetes
-  baseurl=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/
+  baseurl=https://pkgs.k8s.io/core:/stable:/v1.33/rpm/
   enabled=1
   gpgcheck=1
   gpgkey=https://pkgs.k8s.io/core:/stable:/v1.30/rpm/repodata/repomd.xml.key
