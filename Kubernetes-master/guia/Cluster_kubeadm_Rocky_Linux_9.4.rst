@@ -1205,9 +1205,9 @@ Verificar en los tres (3) nodos master los pods de kubernetes ejecutando el sigu
 Instalar la red de kubernetes “Flannel” (En el Master01)
 ++++++++++++++++++++++++++++++++++++
 
-En el nodo 1 master (k8master01) ejecutar la instalacion de **Flannel* ::
+En el nodo 1 master (k8master01) ejecutar la instalacion de **calico* ::
 
-	# kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+	#kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
 
 Ejecutar el siguiente comando para verificar que los pods “coredns” tengan el status “running”::
 
