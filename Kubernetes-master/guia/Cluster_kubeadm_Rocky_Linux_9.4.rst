@@ -1094,8 +1094,8 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
 
   # mkdir /etc/kubernetes/configuration && cd /etc/kubernetes/configuration
 
-  # vi config.yaml
-kkkk
+  # vi config.yaml prueba
+
 
 
 
