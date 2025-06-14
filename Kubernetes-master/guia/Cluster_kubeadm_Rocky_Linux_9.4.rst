@@ -1097,7 +1097,6 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
   # vi config.yaml
 
  cat <<\EOF > config.yaml
-
 apiServer:
   certSANs:
   - 10.134.4.172
@@ -1134,6 +1133,8 @@ kind: KubeletConfiguration
 apiVersion: kubelet.config.k8s.io/v1beta1
 cgroupDriver: systemd
 EOF
+
+
 
 
 
