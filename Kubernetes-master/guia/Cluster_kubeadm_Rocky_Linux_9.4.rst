@@ -1117,7 +1117,7 @@ Se comienza con el Master01 (k8master01). Crear el directorio /etc/kubernetes/co
        - https://10.134.4.172:2379
        - https://10.134.4.173:2379
        - https://10.134.4.174:2379
-       keyFile: /etc/kubernetes/pki/etcd/client-key.pem
+          keyFile: /etc/kubernetes/pki/etcd/client-key.pem
       imageRepository: k8s.gcr.io
       kind: ClusterConfiguration
       kubernetesVersion: v1.30.2
